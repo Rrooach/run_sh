@@ -81,7 +81,7 @@ do
 	cp $CUR_DIR/corpus.db $MS_WORKDIR
 	MS_RES_DIR=$LINUX_DIR/report/$VERSION/ms/Round-$ROUND
 	mkdir -p $MS_RES_DIR
-	sudo $MS_WORKDIR/bin/syz-manager -config config.json -bench $MS_RES_DIR/bench.json > $MS_DES_DIR/log 2>&1 &
+	sudo $MS_WORKDIR/bin/syz-manager -config config.json -bench $MS_RES_DIR/bench.json > $MS_RES_DIR/log 2>&1 &
 	sleep 1s 
 
 	echo -e "\t\t[+]ALL STARTED, waiting for $FUZZ_TIME"
