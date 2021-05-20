@@ -1,6 +1,8 @@
 #!/bin/bash 
 
-KERNEL_VERSIONS="$VERSION"
+FULL_VERSION=$(head /linux/.config | grep Kernel)
+KERNEL_VERSIONS=${FULL_VERSION:12:3}
+
 ROUND="$ROUND"
 ##########  need to modified! ################
 
