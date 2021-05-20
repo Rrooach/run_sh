@@ -1,6 +1,6 @@
 #!/bin/bash 
-
-FULL_VERSION=$(head /linux/.config | grep Kernel)
+LINUX_DIR="/share"
+FULL_VERSION=$(head $LINUX_DIR/.config | grep Kernel)
 KERNEL_VERSIONS=${FULL_VERSION:12:3}
 
 ROUND="$ROUND"
@@ -12,7 +12,6 @@ SYZ_WORKDIR="/eva/eva/syz"
 MS_WORKDIR="/eva/eva/ms"
 CUR_DIR="/eva/eva"
 IMG_DIR="/eva/eva/image"
-LINUX_DIR="/share"
 
 ######################################
 
