@@ -12,7 +12,7 @@ SYZ_WORKDIR="/eva/eva/syz"
 MS_WORKDIR="/eva/eva/ms"
 CUR_DIR="/eva/eva"
 IMG_DIR="/eva/eva/image"
-LINUX_DIR="/linux"
+LINUX_DIR="/share"
 
 ######################################
 
@@ -65,14 +65,14 @@ do
 	
 	cd $SYZ_WORKDIR
 	echo -e "\t\t[+]STARTING syz"
-	SYZ_RES_DIR=$LINUX_DIR/$VERSION/syz/Round-$ROUND
+	SYZ_RES_DIR=$LINUX_DIR/report/$VERSION/syz/Round-$ROUND
 	mkdir -p $SYZ_RES_DIR
 	sudo $SYZ_WORKDIR/bin/syz-manager -config config.json -bench  $SYZ_RES_DIR/bench.json > $SYZ_RES_DIR/log 2>&1 &
 	sleep 1s
 
 	cd $RT_WORKDIR
 	echo -e "\t\t[+]STARTING rt"
-	RT_RES_DIR=$LINUX_DIR/$VERSION/rt/Round-$ROUND
+	RT_RES_DIR=$LINUX_DIR/report/$VERSION/rt/Round-$ROUND
 	mkdir -p $RT_RES_DIR
 	sudo $RT_WORKDIR/bin/syz-manager -config config.json -bench $RT_DES_DIR/bench.json > $RT_DES_DIR/log 2>&1 &
 	sleep 1s 
@@ -80,7 +80,7 @@ do
 	cd $MS_WORKDIR
 	echo -e "\t\t[+]STARTING ms"
 	cp $CUR_DIR/corpus.db $MS_WORKDIR
-	MS_RES_DIR=$LINUX_DIR/$VERSION/ms/Round-$ROUND
+	MS_RES_DIR=$LINUX_DIR/report/$VERSION/ms/Round-$ROUND
 	mkdir -p $MS_RES_DIR
 	sudo $MS_WORKDIR/bin/syz-manager -config config.json -bench $MS_RES_DIR/bench.json > $MS_DES_DIR/log 2>&1 &
 	sleep 1s 
@@ -102,7 +102,7 @@ do
 	mv_stats $RT_WORKDIR $RT_STATS_DIR
 	mv_stats $MS_WORKDIR $MS_STATS_DIR
 #	docker run -it -v $HOST_DIR:/linux fuzzer /bin/bash
-	cp -r $CUR_DIR/stats /linux
+	cp -r $CUR_DIR/stats $LINUX_DIR
 	echo -e "\t\t[=]STATS-$ROUND moved"
 	done
 done
