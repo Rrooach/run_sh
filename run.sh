@@ -73,7 +73,7 @@ do
 	echo -e "\t\t[+]STARTING rt"
 	RT_RES_DIR=$LINUX_DIR/report/$VERSION/rt/Round-$ROUND
 	mkdir -p $RT_RES_DIR
-	sudo $RT_WORKDIR/bin/syz-manager -config config.json -bench $RT_DES_DIR/bench.json > $RT_DES_DIR/log 2>&1 &
+	sudo $RT_WORKDIR/bin/syz-manager -config config.json -bench $RT_RES_DIR/bench.json > $RT_RES_DIR/log 2>&1 &
 	sleep 1s 
 
 	cd $MS_WORKDIR
