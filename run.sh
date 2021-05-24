@@ -15,14 +15,14 @@ IMG_DIR="/eva/eva/image"
 
 ######################################
 
-FUZZ_TIME="1S"
+FUZZ_TIME="24h"
 
 copy_kernel(){
     VERSION=$1 
     DEST=$2
     cp $IMG_DIR/stre* $DEST
     cp $LINUX_DIR/vmlinux $DEST/vmlinux
-    cp $LINUX_DIR/bzImage $DEST/bzImage
+    cp $LINUX_DIR/arch/x86/boot/bzImage $DEST/bzImage
 }
 
 mv_stats(){
