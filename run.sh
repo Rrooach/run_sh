@@ -15,14 +15,14 @@ IMG_DIR="/eva/eva/image"
 
 ######################################
 
-FUZZ_TIME="24h"
+FUZZ_TIME="1S"
 
 copy_kernel(){
     VERSION=$1 
     DEST=$2
     cp $IMG_DIR/stre* $DEST
     cp $LINUX_DIR/vmlinux $DEST/vmlinux
-    cp $LINUX_DIR/arch/x86/boot/bzImage $DEST/bzImage
+    cp $LINUX_DIR/bzImage $DEST/bzImage
 }
 
 mv_stats(){
@@ -103,6 +103,5 @@ do
 #	docker run -it -v $HOST_DIR:/linux fuzzer /bin/bash
 	cp -r $CUR_DIR/stats $LINUX_DIR
 	echo -e "\t\t[=]STATS-$ROUND moved"
-	done
 done
 
